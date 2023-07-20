@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "api-service"
+version = "0.1.0"
+description = ""
+authors = ["kohiry <kohiry@mail.ru>"]
+readme = "README.md"
+packages = [{include = "api_service"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.100.0"}
+faker = "^19.1.0"
+uvicorn = {extras = ["standard"], version = "^0.23.1"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

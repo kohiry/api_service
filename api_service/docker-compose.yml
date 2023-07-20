@@ -1,0 +1,10 @@
+version: "4.2"
+
+services:
+  api:
+    command: "uvicorn app_service.main:app --reload"
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
