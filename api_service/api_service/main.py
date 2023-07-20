@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 
 app = FastAPI(title="api service for create users")
@@ -26,3 +27,7 @@ def new_users(uuid):
 @app.get("/{count}")
 def new_users(count):
     return "1"
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
