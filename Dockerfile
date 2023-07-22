@@ -10,6 +10,6 @@ RUN pip install poetry && \
 
 COPY . /app/
 
-EXPOSE 8000
+# EXPOSE 8000
 
-CMD ["python", "api_service/main.py"]
+#CMD ["python", "api_service/main.py"]

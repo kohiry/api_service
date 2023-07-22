@@ -66,7 +66,8 @@ while END:
         count += 10
 
     except httpx.ConnectError as e:
-        print("connection failed", e)
+        # print("connection failed", e)
+        continue
 
     # отправка GET-запроса на эндпоинт /items/limit/
     # response = client.get("/items/limit/", params={"count": 2})

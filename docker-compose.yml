@@ -1,0 +1,19 @@
+version: "4.2"
+
+services:
+  client:
+    environment:
+      - PYTHONUNBUFFERED=1
+    build: .
+    command: python api_service/client.py
+    volumes:
+      - .:/app
+    ports:
+      - "6379:6379"
+  server:
+    build: .
+    command: python api_service/main.py
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
