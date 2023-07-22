@@ -1,9 +1,14 @@
 version: "4.2"
 
 services:
-  app:
+  server:
     build: .
     ports:
       - "8000:8000"
     volumes:
       - .:/app
+  client:
+    build: .
+    ports:
+      - "6379:6379"
+    command: python api_service/client.py

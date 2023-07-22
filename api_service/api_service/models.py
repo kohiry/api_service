@@ -11,7 +11,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     uuid = Column(String(36))
-    text = Column(String(50))
+    text = Column(String(16))
 
 
 # Схема данных для запроса
