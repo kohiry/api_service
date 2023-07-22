@@ -28,11 +28,6 @@ def create_items(item: ItemCreate, db: Session = Depends(get_db)):
     return {"message": "Item create successfully", "item": db_item}
 
 
-@app.get("/all")
-def new_users():
-    return "1"
-
-
 @app.delete("/{uuid}")
 def delete_item(uuid: str, db: Session = Depends(get_db)):
     db_item = (
@@ -46,14 +41,28 @@ def delete_item(uuid: str, db: Session = Depends(get_db)):
         return {"message": "Item not found"}
 
 
+# Endpoint для выдачи всех элементов базы данных
+@app.get("/all/")
+def get_all_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    items = db.query(User).offset(skip).limit(limit).all()
+    return items
+
+
+# Endpoint для выдачи конкретной записи из базы данных
 @app.get("/{uuid}")
-def new_users(uuid):
-    return "1"
+def get_item(uuid: str, db: Session = Depends(get_db)):
+    item = db.query(User).filter(User.uuid == uuid).first()
+    if item:
+        return item
+    else:
+        raise HTTPException(status_code=404, detail="Record not found")
 
 
-@app.get("/{count}")
-def new_users(count):
-    return "1"
+# Endpoint для выдачи определенного числа записей из базы данных
+@app.get("/count/{count}")
+def get_items_limit(count: int = 100, db: Session = Depends(get_db)):
+    items = db.query(User).limit(count).all()
+    return items
 
 
 if __name__ == "__main__":
